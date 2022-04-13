@@ -238,7 +238,7 @@ nav p{
         border: 1px solid rgb(107, 107, 107);
         border-radius: 5px;
     }
-    #overview {
+    #overview, #completed {
         margin-top: 80px;
     }
     #add {
@@ -262,5 +262,16 @@ nav p{
         left: 25px;
         top: 10px;
         color: rgb(247, 98, 29) !important;
+    }
+}
+@media screen and (max-width: 365px) {
+    #search{
+        margin-left: 60px;
+    }
+    #search-input{
+        width: 40%;
+    }
+    #overview, #completed {
+        margin-top: 100px;
     }
 }
