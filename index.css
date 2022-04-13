@@ -149,6 +149,9 @@ nav p{
     border: 1px solid rgb(107, 107, 107);
     border-radius: 5px;
 }
+#mobile-title{
+    display: none;
+}
 @keyframes menu-display{
     0%{left: -50%}
     100%{left: 0px;}
@@ -253,6 +256,7 @@ nav p{
         height: 100%;
     }
     #mobile-title{
+        display: block;
         position: absolute;
         z-index: 2;
         left: 25px;
