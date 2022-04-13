@@ -149,6 +149,10 @@ nav p{
     border: 1px solid rgb(107, 107, 107);
     border-radius: 5px;
 }
+@keyframes menu-display{
+    0%{left: -50%}
+    100%{left: 0px;}
+}
 @media screen and (max-width: 880px){
     #overview, #completed{
         width: 50%;
@@ -161,6 +165,7 @@ nav p{
 @media screen and (max-width: 750px){
     body{
         background-color: rgb(255, 255, 255);
+        overflow: hidden;
     }
     main{
         width: 100%;
@@ -175,14 +180,24 @@ nav p{
     }
     nav{
         position: absolute;
-        display: none;
+        display: block;
         z-index: 1;
         width: 50%;
         background-color: white;
-        border-right: 1px solid black;
-        border-bottom: 1px solid black;
-        margin-top: 50px;
+        /* border-right: 1px solid black; */
+        /* border-bottom: 1px solid black; */
+        margin-top: 55px;
         padding-top: 20px;
+        height: 100vh;
+        box-shadow: 5px 0px 10px rgb(223, 223, 223);
+        left: 0px;
+        animation: menu-display 2s;
+    }
+    #links {
+        margin-left: 0px;
+    }
+    nav p{
+        margin-left: 0px;
     }
     main {
         width: 100%; 
@@ -207,6 +222,7 @@ nav p{
         /* box-shadow: 0px 5px 10px rgb(238, 238, 238); */
         opacity: 0.8;
         background-color: rgb(255, 255, 255);
+        margin-top: 5px;
     }
     #search{
         /* margin-top: 10px; */
@@ -235,5 +251,12 @@ nav p{
     #menu-btn img{
         /* display: block; */
         height: 100%;
+    }
+    #mobile-title{
+        position: absolute;
+        z-index: 2;
+        left: 25px;
+        top: 10px;
+        color: rgb(247, 98, 29) !important;
     }
 }
