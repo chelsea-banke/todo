@@ -189,7 +189,7 @@ nav p{
         background-color: white;
         /* border-right: 1px solid black; */
         /* border-bottom: 1px solid black; */
-        margin-top: 55px;
+        margin-top: 70px;
         padding-top: 20px;
         height: 100vh;
         box-shadow: 5px 0px 10px rgb(223, 223, 223);
@@ -205,9 +205,6 @@ nav p{
     main {
         width: 100%; 
     }
-    #main{
-        width: 100%;
-    }
     #overview{
         width: 100%;
     }
@@ -219,7 +216,7 @@ nav p{
         display: none;
     }
     header{
-        width: 80%;
+        width: 100%;
         display: flex;
         justify-content: space-around;
         /* box-shadow: 0px 5px 10px rgb(238, 238, 238); */
@@ -229,7 +226,7 @@ nav p{
     }
     #search{
         /* margin-top: 10px; */
-        margin-left: 0px;
+        margin-right: 30px;
     }
     #search-input{
         width: 150px;
@@ -239,21 +236,25 @@ nav p{
         border-radius: 5px;
     }
     #overview, #completed {
-        margin-top: 80px;
+        margin-top: 100px;
     }
     #add {
         right: 30px;
+        bottom: 50px;
     }
     section h4{
-        color: rgb(255, 147, 97) !important;
+        color: rgb(255, 81, 0) !important;
     }
     #menu-btn {
         display: block;
         margin-top: 15px;
+        margin-left: -15px;
     }
     #menu-btn img{
         /* display: block; */
         height: 100%;
+        margin-top: -8px;
+        width: 300%;
     }
     #mobile-title{
         display: block;
@@ -265,13 +266,7 @@ nav p{
     }
 }
 @media screen and (max-width: 365px) {
-    #search{
-        margin-left: 60px;
-    }
     #search-input{
-        width: 40%;
-    }
-    #overview, #completed {
-        margin-top: 100px;
+        width: 50%;
     }
 }
