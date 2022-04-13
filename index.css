@@ -18,7 +18,7 @@ nav{
     position: relative;
     width: 20%;
     text-align: center;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
 }
 nav h1 {
     color: rgb(247, 98, 29);
@@ -134,7 +134,7 @@ header{
 nav p{
     /* position: absolute; */
     font-size: small;
-    margin-top: 50px;
+    margin-top: 80px;
     width: 100%;
     margin-left: -6px;
 }
@@ -180,7 +180,7 @@ nav p{
     }
     nav{
         position: absolute;
-        display: block;
+        display: none;
         z-index: 1;
         width: 50%;
         background-color: white;
@@ -242,7 +242,7 @@ nav p{
         right: 30px;
     }
     section h4{
-        color: rgb(255, 81, 0) !important;
+        color: rgb(255, 147, 97) !important;
     }
     #menu-btn {
         display: block;
