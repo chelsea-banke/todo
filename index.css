@@ -74,16 +74,24 @@ header{
     font-size: 25px;
     /* border: 1px solid rgb(170, 170, 170); */
     border-radius: 15px;
-    background-color: rgb(253, 136, 82);
+    background-color: rgb(255, 102, 31);
     color: rgb(255, 255, 255);
-    opacity: 0.8;
+    opacity: 0.9;
 }
 #add span{
     font-weight: bolder;
 }
-#overview{
-    margin-top: 50px;
+#overview, #completed{
+    margin-top: 70px;
     width: 70%;
+}
+/* #overview .todo {
+    display: none;
+} */
+.info-box{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(197, 197, 197);
 }
 #overview h4, #completed h4{
     margin-top: -10px;
@@ -100,6 +108,7 @@ header{
     box-shadow: 0px 5px 10px rgb(212, 212, 212);
 }
 .todo p{
+    margin-top: 10px;
     max-height: 80px;
     overflow-y: hidden;
     /* background-color: antiquewhite; */
@@ -110,12 +119,16 @@ header{
 }
 #completed{
     width: 30%;
-    margin-top: 50px;
+    /* margin-top: 50px; */
 }
-#completed div{
-    display: block;
+#completed .todo{
+    /* display: block; */
     width: 100%;
-    margin-top: 18px;
+    margin-top: 10px;
+    margin-left: -20px;
+}
+#completed h4{
+    margin: auto;
 }
 #links{
     /* margin: auto; */
@@ -152,6 +165,48 @@ nav p{
 #mobile-title{
     display: none;
 }
+#new {
+    display: none;
+    position: relative;
+    background-color: rgb(242, 249, 255);
+    padding: 22px;
+    padding-top: 15px;
+    /* border: 1px solid black; */
+    width: 80%;
+    margin-top: 20px;
+    margin-left: 50px;
+    border-radius: 2px;
+    /* border: 1px solid rgb(163, 163, 163); */
+    box-shadow: 0px 5px 10px rgb(160, 160, 160);
+}
+#new label{
+    margin-top: 15px;
+}
+#new input{
+    width: 100%;
+    height: 30px;
+    color: rgb(75, 75, 75);
+}
+#new textarea{
+    width: 100%;
+    color: rgb(75, 75, 75);
+}
+#cancel {
+    background-color: rgb(252, 127, 154);
+    color: rgb(68, 68, 68);
+}
+#save{
+    background-color: rgb(38, 247, 177);
+    color: rgb(68, 68, 68);
+    position: absolute;
+    right: 20px;
+}
+.info{
+    margin-top: -10px;
+    margin-right: -10px;
+    color: rgb(80, 80, 80);
+    font-size: small;
+}
 @keyframes menu-display{
     0%{left: -50%}
     100%{left: 0px;}
@@ -160,7 +215,7 @@ nav p{
     #overview, #completed{
         width: 50%;
     }
-    #overview div, #completed div{
+    #overview .todo, #completed .todo{
         display: block;
         width: 80%;
     }

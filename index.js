@@ -10,3 +10,22 @@ document.getElementById("menu-btn").addEventListener("click", function(){
     }
     else { document.getElementById("menu").style.display = "none"}
 })
+
+
+let todoLists = document.querySelectorAll(".todo");
+let defaultDisplay = todoLists[0].style.display;
+document.getElementById("add").addEventListener("click", function(){
+    todoLists.forEach(todo => {
+        todo.style.display = "none";
+    })
+    document.getElementById("new").style.display = "block";
+    document.getElementById("add").style.display = "none";
+})
+document.getElementById("cancel").addEventListener("click", function(){
+    // let defaultDisplay = todoLists[0].style.display;
+    todoLists.forEach(todo => {
+        todo.style.display = defaultDisplay;
+    })
+    document.getElementById("new").style.display = "none";
+    document.getElementById("add").style.display = "block";
+})
