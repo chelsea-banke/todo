@@ -151,9 +151,12 @@ nav p{
     width: 100%;
     margin-left: -6px;
 }
-#all{
+#all, #completed-btn{
     color: rgb(255, 81, 0) !important;
     font-size: larger;
+}
+#completed-btn{
+    display: none;
 }
 #menu-btn {
     display: none;
@@ -247,7 +250,7 @@ nav p{
         margin-top: 70px;
         padding-top: 20px;
         height: 100vh;
-        box-shadow: 5px 0px 10px rgb(223, 223, 223);
+        box-shadow: 5px 0px 10px rgb(223, 223, 223), 0px -5px 10px rgb(255, 255, 255);
         left: 0px;
         animation: menu-display 2s;
     }
@@ -263,12 +266,16 @@ nav p{
     #overview{
         width: 100%;
     }
-    #overview div{
+    #overview div, #completed div{
         margin: auto;
         margin-top: 20px;
     }
     #completed{
         display: none;
+        width: 100%;
+    }
+    #completed .todo{
+        margin-left:40px;
     }
     header{
         width: 100%;
@@ -318,6 +325,13 @@ nav p{
         left: 25px;
         top: 10px;
         color: rgb(247, 98, 29) !important;
+    }
+    #completed-btn{
+        display: block;
+    }
+    #all, #completed-btn{
+        color: rgb(0, 132, 255) !important;
+        font-size: larger;
     }
 }
 @media screen and (max-width: 365px) {
