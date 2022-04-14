@@ -11,8 +11,16 @@ document.getElementById("menu-btn").addEventListener("click", function(){
     else { document.getElementById("menu").style.display = "none"}
 })
 
-
-let todoLists = document.querySelectorAll(".todo");
+function filter(list){
+    let temp = []; 
+    list.forEach(listItem => {
+        if (listItem.parentElement.id == "overview"){
+            temp.push(listItem);
+        }
+    })
+    return temp;
+}
+let todoLists = filter(document.querySelectorAll(".todo"));
 let defaultDisplay = todoLists[0].style.display;
 document.getElementById("add").addEventListener("click", function(){
     todoLists.forEach(todo => {
