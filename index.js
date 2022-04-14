@@ -2,6 +2,14 @@ function toogle(bool){
     if (bool){return false}
     else {return true}
 }
+
+document.getElementById("completed").addEventListener("click", function(){
+    document.getElementById("menu").style.display = "none";
+})
+document.getElementById("overview").addEventListener("click", function(){
+    document.getElementById("menu").style.display = "none";
+})
+
 let menuDisplay = false;
 document.getElementById("menu-btn").addEventListener("click", function(){
     menuDisplay = toogle(menuDisplay);
@@ -30,7 +38,7 @@ document.getElementById("add").addEventListener("click", function(){
     todoLists.forEach(todo => {
         todo.style.display = "none";
     })
-    completed.style.display = "none";
+    // completed.style.display = "none";
     overview.style.display = "block";
     document.getElementById("new").style.display = "block";
     document.getElementById("add").style.display = "none";
