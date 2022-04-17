@@ -38,76 +38,35 @@
                     <button class="btn" id="search-go">Go</button>
                 </section>
             </header>
-            <button class="btn" id="add">Add<span> +</span></button>
+            <button class="btn" id="add">New<span> +</span></button>
             <section id="overview">
-                <h4>Overview</h4>
-                <div id="new">
-                    <label for="title-input">Title</label><br>
-                    <input id="title-input" type="text"><br>
-                    <label for="date-input">Due date</label><br>
-                    <input id="date-input" type="date"><br>
-                    <label for="date-input"> Description</label><br>
-                    <textarea id="description" cols="25" rows="5"></textarea><br><br>
-                    <button class="btn" id="cancel">cancel</button>
-                    <button class="btn" id="save">save</button>
+                <div id="details-container">
+                    <button class="btn" id="back"><img src="/media/down-arrow-svgrepo-com.svg"></button>
+                    <div id="details"></div>
                 </div>
-                <div class="todo">
-                    <div class="info-box">
-                        <p>12/15/2022</p>
-                        <button class="btn info">ooo</button>
+                <div id="new-container">
+                    <h4>New</h4>
+                    <div id="new">
+                        <label for="title-input">Title</label><br>
+                        <input id="title-input" type="text">
+                        <label for="date-time">Due date/time</label>
+                        <div id="date-time">
+                            <input id="date-input" type="date">
+                            <input id="time-input" type="time">
+                        </div>
+                        <label for="date-input"> Description</label><br>
+                        <textarea id="description" cols="25" rows="5"></textarea><br><br>
+                        <button class="btn" id="cancel">cancel</button>
+                        <button class="btn" id="save">save</button>
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum vel possimus necessitatibus, ipsam iusto fugit ducimus officia numquam </p>
-                    <hr>
-                    <h5>ToDo 1</h5>
                 </div>
-                <div class="todo">
-                    <div class="info-box">
-                        <p>12/15/2022</p>
-                        <button class="btn info">ooo</button>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum vel possimus necessitatibus, ipsam iusto fugit ducimus officia numquam </p>
-                    <hr>
-                    <h5>ToDo 1</h5>
-                </div>
-                <div class="todo">
-                    <div class="info-box">
-                        <p>12/15/2022</p>
-                        <button class="btn info">ooo</button>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum vel possimus necessitatibus, ipsam iusto fugit ducimus officia numquam </p>
-                    <hr>
-                    <h5>ToDo 1</h5>
-                </div>
-                <div class="todo">
-                    <div class="info-box">
-                        <p>12/15/2022</p>
-                        <button class="btn info">ooo</button>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum vel possimus necessitatibus, ipsam iusto fugit ducimus officia numquam </p>
-                    <hr>
-                    <h5>ToDo 1</h5>
+                <div id="todo-container-all">
+                    <h4>Overview</h4>
+                    <div id="todo-container"></div>
                 </div>
             </section>
             <section id="completed">
                 <h4>Completed</h4>
-                <div class="todo">
-                    <div class="info-box">
-                        <p>12/15/2022</p>
-                        <button class="btn info">ooo</button>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum vel possimus necessitatibus, ipsam iusto fugit ducimus officia numquam </p>
-                    <hr>
-                    <h5>ToDo 1</h5>
-                </div>
-                <div class="todo">
-                    <div class="info-box">
-                        <p>12/15/2022</p>
-                        <button class="btn info">ooo</button>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum vel possimus necessitatibus, ipsam iusto fugit ducimus officia numquam </p>
-                    <hr>
-                    <h5>ToDo 1</h5>
-                </div>
             </section>
         </article>
     </main>

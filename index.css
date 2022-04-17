@@ -1,7 +1,7 @@
 body{
     display: flex;
     justify-content: center;
-    background-color: rgb(239, 254, 255);
+    background-color: rgb(0, 0, 0);
     color: rgb(70, 70, 70);
 }
 main{
@@ -12,7 +12,7 @@ main{
     padding: 25px;
     border-radius: 5px;
     height: 90vh;
-    box-shadow: 0px 2px 10px rgb(197, 197, 197);
+    /* box-shadow: 0px 2px 10px rgb(197, 197, 197); */
 }
 nav{
     position: relative;
@@ -77,6 +77,26 @@ header{
     background-color: rgb(255, 102, 31);
     color: rgb(255, 255, 255);
     opacity: 0.9;
+    z-index: 1;
+}
+#more{
+    display: none;
+    position: absolute;
+    right: 0px;
+    z-index: 1;
+    background-color: white;
+    border: 1px solid rgb(211, 211, 211);
+    /* height: 100%; */
+}
+#mark-complete{
+    border-bottom: 1px solid rgb(211, 211, 211);
+    background-color: rgb(38, 247, 177);
+}
+#delete{
+    background-color: rgb(252, 127, 154);
+}
+#more button{
+    font-size: 12px;
 }
 #add span{
     font-weight: bolder;
@@ -98,6 +118,8 @@ header{
     margin-left: 50px;
 }
 .todo {
+    cursor: pointer;
+    position: relative;
     margin: 10px;
     display: inline-block;
     width: 40%;
@@ -168,8 +190,10 @@ nav p{
 #mobile-title{
     display: none;
 }
-#new {
+#new-container{
     display: none;
+}
+#new {
     position: relative;
     background-color: rgb(242, 249, 255);
     padding: 22px;
@@ -190,6 +214,13 @@ nav p{
     height: 30px;
     color: rgb(75, 75, 75);
 }
+#date-time {
+    display: flex;
+    /* justify-content: space-between; */
+}
+#date-time input {
+    width: 50%;
+}
 #new textarea{
     width: 100%;
     color: rgb(75, 75, 75);
@@ -209,6 +240,46 @@ nav p{
     margin-right: -10px;
     color: rgb(80, 80, 80);
     font-size: small;
+}
+#details{
+    position: relative;
+    width: 90%;
+    box-shadow: 0px 5px 10px rgb(223, 223, 223);
+    padding: 20px;
+    margin: auto;
+    background-color: white;
+    text-align: left;
+    margin-top: 40px;
+}
+/* #back{
+    display: none; 
+} */
+#back{
+    /* position: fixed; */
+    margin-left: 30px;
+    /* top: 18%; */
+}
+#back img{
+    width: 20px;
+    transform: rotate(90deg);
+}
+h4 .info{
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+#details-container{
+    display: none;
+    position: relative;
+    width: 100%;
+}
+#details h4{
+    /* background-color: aliceblue; */
+    margin-left: 0px;
+}
+#time-left{
+    padding: 10px;
+    box-shadow: 3px 5px 10px rgb(231, 231, 231) inset;
 }
 @keyframes menu-display{
     0%{left: -50%}
@@ -300,10 +371,9 @@ nav p{
     #overview, #completed {
         margin-top: 100px;
     }
-    #add {
-        right: 30px;
-        bottom: 50px;
-    }
+    /* #add {
+        z-index: 1;
+    } */
     section h4{
         color: rgb(255, 81, 0) !important;
     }
@@ -332,6 +402,12 @@ nav p{
     #all, #completed-btn{
         color: rgb(0, 132, 255) !important;
         font-size: larger;
+    }
+    #more{
+        top: 55px;
+    }
+    #info{
+        font-size: 12px;
     }
 }
 @media screen and (max-width: 365px) {
