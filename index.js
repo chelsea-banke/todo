@@ -22,49 +22,117 @@ let allToDo = [
 ]
 
 let index = 0;
+let moreBoxes = document.querySelectorAll(".more");
+function reset(){
+    allToDo.forEach(todo => {
+        let container = document.createElement("div");
+        container.classList.add("todo");
+        container.value = index;
+        container.innerHTML = `
+        <div class="info-box">
+        <p>${todo.dateCreated.getDate()}/ ${todo.dateCreated.getMonth()+1}/ ${todo.dateCreated.getFullYear()}</p>
+        <button class="btn info" value="${index}">ooo</button>
+        </div>
+        <div class="btn-group-vertical more" value="${index}">
+            <button class="btn" id="mark-complete">Mark as complete</button>
+            <button class="btn" id="delete">Delete</button>
+        </div>
+        <p>${todo.description}</p>
+        <hr>
+        <h5>${todo.title}</h5>
+        `;
+        container.addEventListener("click", function(event){
+            let target = event.target; 
+            if (target.classList.contains("info")){
+                moreBoxes.forEach(box => {
+                    console.log(target.value);
+                    if (parseInt(box.getAttribute("value")) == parseInt(target.value)){
+                        box.style.display = "block";
+                    }
+                    else{
+                        box.style.display = "none";
+                    }
+                    console.log(box.getAttribute("value"));
+                })
+            }
+            else if(target.id == "mark-complete"){
+                allToDo[parseInt(target.parentElement.value)].status = "completed";
+                reset();
+            }
+            else if(target.id == "delete"){
+                delete allToDo[parseInt(target.parentElement.value)];
+                allToDo = allToDo.filter(item => {
+                     return item !== undefined;
+                })
+                document.getElementById("todo-container").innerHTML = "";
+                reset();
+            }
+            else{
+                document.getElementById("details").innerHTML = 
+                `
+                <h4>${todo.title}<button class="btn info">ooo</button></h4>
+                <p>${todo.description}</p><hr>
+                <div id="info" value="${index}">
+                    <p>Date/time created: ${todo.dateCreated.getDate()}/ ${todo.dateCreated.getMonth()+1}/ ${todo.dateCreated.getFullYear()} (${todo.dateCreated.getHours()}:${todo.dateCreated.getMinutes()})</p>
+                    <p>Due date/time: ${todo.dueDate.getDate()}/ ${todo.dueDate.getMonth()+1}/ ${todo.dueDate.getFullYear()} (${todo.dueDate.getHours()}:${todo.dueDate.getMinutes()})</p>
+                    <p>Time left: <span id="time-left">1day | 2hrs | 9mins | 2secs</span>
+                    </p>
+                    <p>Status: ${todo.getStatus()}</p>
+                </div>
+                `;
+                document.getElementById("details-container").style.display = "block";
+                document.getElementById("todo-container-all").style.display = "none";
+                document.getElementById("add").style.display = "none";
+                completed.style.display = "none";
+            }
+        })
+        document.getElementById("todo-container").append(container);
+        if (todo.getStatus == "timed Out"){
+            document.getElementById("todo-completed").append(container);
+        }
+        moreBoxes = document.querySelectorAll(".more");
+        index ++;
+    })
+}
 
-allToDo.forEach(todo => {
-    let container = document.createElement("div");
-    container.classList.add("todo");
-    container.value = index;
-    container.innerHTML = `
-    <div class="info-box">
-    <p>${todo.dateCreated.getDate()}/ ${todo.dateCreated.getMonth()}/ ${todo.dateCreated.getFullYear()}</p>
-    <button class="btn info">ooo</button>
-    </div>
-    <div class="btn-group-vertical" id="more" value="${index}">
-        <button class="btn" id="mark-complete">Mark as complete</button>
-        <button class="btn" id="delete">Delete</button>
-    </div>
-    <p>${todo.description}</p>
-    <hr>
-    <h5>${todo.title}</h5>
-    `;
-    document.getElementById("todo-container").append(container);
-    if (todo.getStatus == "timed Out"){
-        document.getElementById("todo-completed").append(container);
+reset();
+let dates = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "dECEMBER"];
+document.getElementById("save").addEventListener("click", function(){
+    let title = document.getElementById("title-input").value;
+    let dDate = document.getElementById("date-input").value;
+    let dTime = document.getElementById("time-input").value;
+    let description = document.getElementById("description").value;
+
+    console.log(title);
+    console.log(dDate);
+    console.log(dTime);
+    console.log(description);
+    if (title == '' || dDate == '' || dTime == "" || description == ""){
+        alert("Please make sure you filled every field !");
+    }
+    else {
+        document.getElementById("todo-container").innerHTML = ``;
+        allToDo.push(new ToDo(title, description, (dDate + "T" + dTime)));
+        reset();
+
+        document.getElementById("todo-container").style.display = "block";
+        if (window.screen.width > 750){
+            completed.style.display = "block";
+        }
+        document.getElementById("new-container").style.display = "none";
+        document.getElementById("add").style.display = "block";
+        document.getElementById("title-input").value = "";
+        document.getElementById("date-input").value = "";
+        document.getElementById("time-input").value = "";
+        document.getElementById("description").value = "";
     }
 })
 
-document.getElementById("todo-container").addEventListener("click", function(event){
-    if(event.target.classList.contains("todo")){
-        let zoomIn = allToDo[parseInt(event.target.value)];
-        console.log(event.target.value);
-        document.getElementById("details").innerHTML = 
-        `
-        <h4>${zoomIn.title}<button class="btn info">ooo</button></h4>
-        <p>${zoomIn.description}</p><hr>
-        <div id="info">
-            <p>Date/time created: ${zoomIn.dateCreated.getDate()}/ ${zoomIn.dateCreated.getMonth()}/ ${zoomIn.dateCreated.getFullYear()} (${zoomIn.dateCreated.getHours()}:${zoomIn.dateCreated.getMinutes()})</p>
-            <p>Due date/time: ${zoomIn.dueDate.getDate()}/ ${zoomIn.dueDate.getMonth()}/ ${zoomIn.dueDate.getFullYear()} (${zoomIn.dueDate.getHours()}:${zoomIn.dueDate.getMinutes()})</p>
-            <p>Time left: <span id="time-left">1day | 2hrs | 9mins | 2secs</span>
-            </p>
-            <p>Status: ${zoomIn.getStatus()}</p>
-        </div>
-        `;
-        document.getElementById("details-container").style.display = "block";
-        document.getElementById("todo-container-all").style.display = "none";
-        document.getElementById("add").style.display = "none";
+document.body.addEventListener("click", function(event){
+    if (!(event.target.classList.contains("info"))){
+        moreBoxes.forEach(box => {
+            box.style.display = "none";
+        })   
     }
 })
 
@@ -115,15 +183,7 @@ let overview = document.getElementById("overview");
 let completed = document.getElementById("completed");
 
 document.getElementById("add").addEventListener("click", function(){
-    // todoLists.forEach(todo => {
-    //     todo.style.display = "none";
-    // })
     document.getElementById("todo-container").style.display = "none";
-    // completed.style.display = "none";
-    // completed.style.display = "block";
-    // if (window.screen.width <= 750){
-    //     completed.style.display = defaultDisplay;
-    // }
     completed.style.display = "none";
     overview.style.display = "block";
     document.getElementById("new-container").style.display = "block";
@@ -131,10 +191,6 @@ document.getElementById("add").addEventListener("click", function(){
 })
 
 document.getElementById("cancel").addEventListener("click", function(){
-    // let defaultDisplay = todoLists[0].style.display;
-    // todoLists.forEach(todo => {
-    //     todo.style.display = defaultDisplay;
-    // })
     document.getElementById("todo-container").style.display = "block";
     if (window.screen.width > 750){
         completed.style.display = "block";
@@ -168,4 +224,8 @@ document.getElementById("back").addEventListener("click", function(){
     document.getElementById("details-container").style.display = "none";
     document.getElementById("todo-container-all").style.display = "block";
     document.getElementById("add").style.display = "block";
+    document.getElementById("details").innerHTML = ``;
+    if (window.screen.width > 750){
+        completed.style.display = "block";
+    }
 })

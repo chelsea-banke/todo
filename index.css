@@ -79,7 +79,7 @@ header{
     opacity: 0.9;
     z-index: 1;
 }
-#more{
+.more{
     display: none;
     position: absolute;
     right: 0px;
@@ -95,7 +95,7 @@ header{
 #delete{
     background-color: rgb(252, 127, 154);
 }
-#more button{
+.more button{
     font-size: 12px;
 }
 #add span{
@@ -279,7 +279,11 @@ h4 .info{
 }
 #time-left{
     padding: 10px;
-    box-shadow: 3px 5px 10px rgb(231, 231, 231) inset;
+    /* box-shadow: 3px 5px 10px rgb(231, 231, 231) inset; */
+    background-color: rgb(252, 242, 224);
+}
+#info{
+    font-size: 14px;
 }
 @keyframes menu-display{
     0%{left: -50%}
@@ -403,7 +407,7 @@ h4 .info{
         color: rgb(0, 132, 255) !important;
         font-size: larger;
     }
-    #more{
+    .more{
         top: 55px;
     }
     #info{
