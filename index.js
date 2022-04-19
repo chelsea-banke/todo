@@ -21,9 +21,9 @@ let allToDo = [
     new ToDo("Walk the dog", "Walk the dog through the park for 30 mins and return home", "October 13, 2014 11:13:00")
 ]
 
-let index = 0;
 let moreBoxes = document.querySelectorAll(".more");
 function reset(){
+    let index = 0;
     allToDo.forEach(todo => {
         let container = document.createElement("div");
         container.classList.add("todo");
@@ -56,11 +56,14 @@ function reset(){
                 })
             }
             else if(target.id == "mark-complete"){
-                allToDo[parseInt(target.parentElement.value)].status = "completed";
+                allToDo[parseInt(target.parentElement.getAttribute("value"))].status = "completed";
+                document.getElementById("todo-container").innerHTML = "";
                 reset();
             }
             else if(target.id == "delete"){
-                delete allToDo[parseInt(target.parentElement.value)];
+                // console.log(target.parentElement.getAttribute("value"))
+                // console.log(allToDo[parseInt(target.parentElement.getAttribute("value"))]);
+                delete allToDo[parseInt(target.parentElement.getAttribute("value"))];
                 allToDo = allToDo.filter(item => {
                      return item !== undefined;
                 })
@@ -86,10 +89,11 @@ function reset(){
                 completed.style.display = "none";
             }
         })
-        document.getElementById("todo-container").append(container);
-        if (todo.getStatus == "timed Out"){
-            document.getElementById("todo-completed").append(container);
+        if (todo.status == "completed"){
+            let temp = container;
+            document.getElementById("todo-completed").prepend(temp);
         }
+        document.getElementById("todo-container").prepend(container);
         moreBoxes = document.querySelectorAll(".more");
         index ++;
     })
@@ -210,6 +214,7 @@ document.getElementById("all").addEventListener("click", function(){
     todoLists.forEach(todo => {
         todo.style.display = defaultDisplay;
     })
+    menuDisplay = toogle(menuDisplay);
 })
 
 document.getElementById("completed-btn").addEventListener("click", function(){
@@ -217,6 +222,7 @@ document.getElementById("completed-btn").addEventListener("click", function(){
     completed.style.display = "block";
     document.getElementById("menu").style.display = "none";
     document.getElementById("add").style.display = "block";
+    menuDisplay = toogle(menuDisplay);
 })
 console.log(window.screen.width)
 
