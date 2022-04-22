@@ -276,6 +276,7 @@ h4 .info{
 #details h4{
     /* background-color: aliceblue; */
     margin-left: 0px;
+    color: rgb(53, 141, 255);
 }
 #time-left{
     padding: 10px;
@@ -284,6 +285,11 @@ h4 .info{
 }
 #info{
     font-size: 14px;
+}
+.status{
+    position: absolute;
+    bottom: -15px;
+    color: rgb(97, 180, 71);
 }
 @keyframes menu-display{
     0%{left: -50%}
@@ -318,7 +324,7 @@ h4 .info{
         position: absolute;
         display: none;
         z-index: 1;
-        width: 50%;
+        width: 70%;
         background-color: white;
         /* border-right: 1px solid black; */
         /* border-bottom: 1px solid black; */
@@ -412,6 +418,14 @@ h4 .info{
     }
     #info{
         font-size: 12px;
+    }
+    #add{
+        right: 20px;
+        bottom: 20px;
+    }
+    #new{
+        width: 100%;
+        background-color: rgb(201, 201, 201);
     }
 }
 @media screen and (max-width: 365px) {

@@ -15,6 +15,21 @@ class ToDo {
             return "pending";
         }
     }
+    timeLeft(){
+        let ms = this.dueDate.getTime() - new Date();
+        if (ms < 0){
+            return [0, 0, 0, 0];
+        }
+        const days = Math.floor(ms / (24*60*60*1000));
+        const daysms = ms % (24*60*60*1000);
+        const hours = Math.floor(daysms / (60*60*1000));
+        const hoursms = ms % (60*60*1000);
+        const minutes = Math.floor(hoursms / (60*1000));
+        const minutesms = ms % (60*1000);
+        const sec = Math.floor(minutesms / 1000);
+        
+        return [days, hours, minutes, sec];
+    }
 }
 
 let allToDo = [
@@ -28,19 +43,37 @@ function reset(){
         let container = document.createElement("div");
         container.classList.add("todo");
         container.value = index;
-        container.innerHTML = `
-        <div class="info-box">
-        <p>${todo.dateCreated.getDate()}/ ${todo.dateCreated.getMonth()+1}/ ${todo.dateCreated.getFullYear()}</p>
-        <button class="btn info" value="${index}">ooo</button>
-        </div>
-        <div class="btn-group-vertical more" value="${index}">
-            <button class="btn" id="mark-complete">Mark as complete</button>
-            <button class="btn" id="delete">Delete</button>
-        </div>
-        <p>${todo.description}</p>
-        <hr>
-        <h5>${todo.title}</h5>
-        `;
+        if (todo.status == "completed"){
+            container.innerHTML = `
+            <div class="info-box">
+            <p>${todo.dateCreated.getDate()}/ ${todo.dateCreated.getMonth()+1}/ ${todo.dateCreated.getFullYear()}</p>
+            <button class="btn info" value="${index}">ooo</button>
+            </div>
+            <div class="btn-group-vertical more" value="${index}">
+                <button class="btn" id="delete">Delete</button>
+            </div>
+            <p>${todo.description}</p>
+            <hr>
+            <h5>${todo.title}</h5>
+            <p class="status">${todo.status}</p>
+            `;
+        }
+        else{
+            container.innerHTML = `
+            <div class="info-box">
+            <p>${todo.dateCreated.getDate()}/ ${todo.dateCreated.getMonth()+1}/ ${todo.dateCreated.getFullYear()}</p>
+            <button class="btn info" value="${index}">ooo</button>
+            </div>
+            <div class="btn-group-vertical more" value="${index}">
+                <button class="btn" id="mark-complete">Mark as complete</button>
+                <button class="btn" id="delete">Delete</button>
+            </div>
+            <p>${todo.description}</p>
+            <hr>
+            <h5>${todo.title}</h5>
+            <p class="status">${todo.status}</p>
+            `;   
+        }
         container.addEventListener("click", function(event){
             let target = event.target; 
             if (target.classList.contains("info")){
@@ -61,8 +94,6 @@ function reset(){
                 reset();
             }
             else if(target.id == "delete"){
-                // console.log(target.parentElement.getAttribute("value"))
-                // console.log(allToDo[parseInt(target.parentElement.getAttribute("value"))]);
                 delete allToDo[parseInt(target.parentElement.getAttribute("value"))];
                 allToDo = allToDo.filter(item => {
                      return item !== undefined;
@@ -71,6 +102,7 @@ function reset(){
                 reset();
             }
             else{
+                let temp = todo.timeLeft();
                 document.getElementById("details").innerHTML = 
                 `
                 <h4>${todo.title}<button class="btn info">ooo</button></h4>
@@ -78,7 +110,7 @@ function reset(){
                 <div id="info" value="${index}">
                     <p>Date/time created: ${todo.dateCreated.getDate()}/ ${todo.dateCreated.getMonth()+1}/ ${todo.dateCreated.getFullYear()} (${todo.dateCreated.getHours()}:${todo.dateCreated.getMinutes()})</p>
                     <p>Due date/time: ${todo.dueDate.getDate()}/ ${todo.dueDate.getMonth()+1}/ ${todo.dueDate.getFullYear()} (${todo.dueDate.getHours()}:${todo.dueDate.getMinutes()})</p>
-                    <p>Time left: <span id="time-left">1day | 2hrs | 9mins | 2secs</span>
+                    <p>Time left: <span id="time-left">${temp[0]}day | ${temp[1]}hrs | ${temp[2]}mins | ${temp[3]}secs</span>
                     </p>
                     <p>Status: ${todo.getStatus()}</p>
                 </div>
@@ -91,6 +123,7 @@ function reset(){
         })
         if (todo.status == "completed"){
             let temp = container;
+            console.log(temp);
             document.getElementById("todo-completed").prepend(temp);
         }
         document.getElementById("todo-container").prepend(container);
@@ -146,13 +179,13 @@ function toogle(bool){
 }
 
 document.getElementById("completed").addEventListener("click", function(){
-    if (window.screen.width <= 750){
+    if (window.screen.width <= 750 && document.getElementById("menu").style.display != "none"){
         document.getElementById("menu").style.display = "none";
         menuDisplay = toogle(menuDisplay);
     }
 })
 document.getElementById("overview").addEventListener("click", function(){
-    if (window.screen.width <= 750){
+    if (window.screen.width <= 750 && document.getElementById("menu").style.display != "none"){
         document.getElementById("menu").style.display = "none";
         menuDisplay = toogle(menuDisplay);
     
@@ -187,7 +220,7 @@ let overview = document.getElementById("overview");
 let completed = document.getElementById("completed");
 
 document.getElementById("add").addEventListener("click", function(){
-    document.getElementById("todo-container").style.display = "none";
+    document.getElementById("todo-container-all").style.display = "none";
     completed.style.display = "none";
     overview.style.display = "block";
     document.getElementById("new-container").style.display = "block";
@@ -195,7 +228,7 @@ document.getElementById("add").addEventListener("click", function(){
 })
 
 document.getElementById("cancel").addEventListener("click", function(){
-    document.getElementById("todo-container").style.display = "block";
+    document.getElementById("todo-container-all").style.display = "block";
     if (window.screen.width > 750){
         completed.style.display = "block";
     }
