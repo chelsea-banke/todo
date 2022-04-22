@@ -134,25 +134,23 @@ function reset(){
 
 reset();
 let dates = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "dECEMBER"];
+
 document.getElementById("save").addEventListener("click", function(){
     let title = document.getElementById("title-input").value;
     let dDate = document.getElementById("date-input").value;
     let dTime = document.getElementById("time-input").value;
     let description = document.getElementById("description").value;
 
-    console.log(title);
-    console.log(dDate);
-    console.log(dTime);
-    console.log(description);
     if (title == '' || dDate == '' || dTime == "" || description == ""){
         alert("Please make sure you filled every field !");
     }
     else {
+        console.log("okay");
         document.getElementById("todo-container").innerHTML = ``;
         allToDo.push(new ToDo(title, description, (dDate + "T" + dTime)));
         reset();
 
-        document.getElementById("todo-container").style.display = "block";
+        document.getElementById("todo-container-all").style.display = "block";
         if (window.screen.width > 750){
             completed.style.display = "block";
         }
