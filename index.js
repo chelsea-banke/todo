@@ -39,10 +39,21 @@ let allToDo = [
 let moreBoxes = document.querySelectorAll(".more");
 function reset(){
     let index = 0;
+    document.getElementById("todo-titles").innerHTML = `
+        <button class="btn" id="all">All</button>
+        <button class="btn" id="completed-btn">Time out</button>
+    `;
     allToDo.forEach(todo => {
         let container = document.createElement("div");
         container.classList.add("todo");
         container.value = index;
+
+        let todoLink = document.createElement("button");
+        todoLink.value = index;
+        todoLink.classList.add("btn");
+        todoLink.innerHTML = todo.title;
+        document.getElementById("todo-titles").append(todoLink);
+
         if (todo.status == "completed"){
             container.innerHTML = `
             <div class="info-box">
@@ -134,6 +145,32 @@ function reset(){
 
 reset();
 let dates = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "dECEMBER"];
+
+document.getElementById("todo-titles").addEventListener("click", function(event){e
+    let todo_ = allToDo[parseInt(event.target.getAttribute("value"))];
+    let temp = todo_.timeLeft();
+    document.getElementById("details").innerHTML = 
+    `
+    <h4>${todo_.title}<button class="btn info">ooo</button></h4>
+    <p>${todo_.description}</p><hr>
+    <div id="info" value="${event.target.value}">
+        <p>Date/time created: ${todo_.dateCreated.getDate()}/ ${todo_.dateCreated.getMonth()+1}/ ${todo_.dateCreated.getFullYear()} (${todo_.dateCreated.getHours()}:${todo_.dateCreated.getMinutes()})</p>
+        <p>Due date/time: ${todo_.dueDate.getDate()}/ ${todo_.dueDate.getMonth()+1}/ ${todo_.dueDate.getFullYear()} (${todo_.dueDate.getHours()}:${todo_.dueDate.getMinutes()})</p>
+        <p>Time left: <span id="time-left">${temp[0]}day | ${temp[1]}hrs | ${temp[2]}mins | ${temp[3]}secs</span>
+        </p>
+        <p>Status: ${todo_.getStatus()}</p>
+    </div>
+    `;
+    document.getElementById("details-container").style.display = "block";
+    document.getElementById("todo-container-all").style.display = "none";
+    document.getElementById("add").style.display = "none";
+    completed.style.display = "none";
+
+    if (window.screen.width <= 750){
+        menuDisplay = toogle(menuDisplay);
+        document.getElementById("menu").style.display = "none"; 
+    }
+})
 
 document.getElementById("save").addEventListener("click", function(){
     let title = document.getElementById("title-input").value;
@@ -266,3 +303,31 @@ document.getElementById("back").addEventListener("click", function(){
         completed.style.display = "block";
     }
 })
+
+// let timeOut = function(){
+//     let count = 0;
+//     allToDo.forEach(elem => {
+//         if (elem.getStatus() == "timed out"){
+//             let element = document.createElement("div");
+//             element.innerHTML = `
+//                 <div class="info-box">
+//                 <p>${elem.dateCreated.getDate()}/ ${elem.dateCreated.getMonth()+1}/ ${elem.dateCreated.getFullYear()}</p>
+//                 <button class="btn info" value="${index}">ooo</button>
+//                 </div>
+//                 <div class="btn-group-vertical more" value="${index}">
+//                     <button class="btn" id="delete">Delete</button>
+//                 </div>
+//                 <p>${elem.description}</p>
+//                 <hr>
+//                 <h5>${elem.title}</h5>
+//                 <p class="status">${elem.status}</p>
+//             `;
+//             document.getElementById("todo-completed").append(elem);   
+//             count ++;
+//         }
+//     })
+//     if (count == 0){
+
+//     }
+// }
+// setInterval(timeOut(), 5000);
