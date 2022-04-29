@@ -149,7 +149,7 @@ header{
     margin-top: 10px;
     margin-left: -20px;
 }
-#completed h4{
+#completed h4, #todo-container-all h4{
     margin: auto;
 }
 #links{
@@ -214,12 +214,8 @@ nav p{
     height: 30px;
     color: rgb(75, 75, 75);
 }
-#date-time {
-    display: flex;
-    /* justify-content: space-between; */
-}
 #date-time input {
-    width: 50%;
+    width: 100%;
 }
 #new textarea{
     width: 100%;
@@ -290,6 +286,13 @@ h4 .info{
     position: absolute;
     bottom: -15px;
     color: rgb(97, 180, 71);
+}
+#todo-container{
+    margin-left: 35px;
+    margin-top: 50px;
+}
+#todo-completed{
+    margin-top: 40px;
 }
 @keyframes menu-display{
     0%{left: -50%}
@@ -426,6 +429,17 @@ h4 .info{
     #new{
         width: 100%;
         background-color: rgb(201, 201, 201);
+    }
+    #back{
+        /* position: fixed; */
+        margin-left: 0px;
+        /* top: 18%; */
+    }
+    #dd{
+        float: left;
+    }
+    #date-time{
+        margin-top: -15px;
     }
 }
 @media screen and (max-width: 365px) {
