@@ -153,7 +153,7 @@ document.getElementById("todo-titles").addEventListener("click", function(event)
         let temp = todo_.timeLeft();
         document.getElementById("details").innerHTML = 
         `
-        <h4>${todo_.title}<button class="btn info">ooo</button></h4>
+        <h4>${todo_.title}</h4>
         <p>${todo_.description}</p><hr>
         <div id="info" value="${event.target.value}">
             <p>Date/time created: ${todo_.dateCreated.getDate()}/ ${todo_.dateCreated.getMonth()+1}/ ${todo_.dateCreated.getFullYear()} (${todo_.dateCreated.getHours()}:${todo_.dateCreated.getMinutes()})</p>
