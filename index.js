@@ -116,14 +116,14 @@ function reset(){
                 let temp = todo.timeLeft();
                 document.getElementById("details").innerHTML = 
                 `
-                <h4>${todo.title}<button class="btn info">ooo</button></h4>
+                <h4>${todo.title}</h4>
                 <p>${todo.description}</p><hr>
                 <div id="info" value="${index}">
                     <p>Date/time created: ${todo.dateCreated.getDate()}/ ${todo.dateCreated.getMonth()+1}/ ${todo.dateCreated.getFullYear()} (${todo.dateCreated.getHours()}:${todo.dateCreated.getMinutes()})</p>
                     <p>Due date/time: ${todo.dueDate.getDate()}/ ${todo.dueDate.getMonth()+1}/ ${todo.dueDate.getFullYear()} (${todo.dueDate.getHours()}:${todo.dueDate.getMinutes()})</p>
                     <p>Time left: <span id="time-left">${temp[0]}day | ${temp[1]}hrs | ${temp[2]}mins | ${temp[3]}secs</span>
                     </p>
-                    <p>Status: ${todo.getStatus()}</p>
+                    <p>Status: ${todo.status}</p>
                 </div>
                 `;
                 document.getElementById("details-container").style.display = "block";
@@ -160,7 +160,7 @@ document.getElementById("todo-titles").addEventListener("click", function(event)
             <p>Due date/time: ${todo_.dueDate.getDate()}/ ${todo_.dueDate.getMonth()+1}/ ${todo_.dueDate.getFullYear()} (${todo_.dueDate.getHours()}:${todo_.dueDate.getMinutes()})</p>
             <p>Time left: <span id="time-left">${temp[0]}day | ${temp[1]}hrs | ${temp[2]}mins | ${temp[3]}secs</span>
             </p>
-            <p>Status: ${todo_.getStatus()}</p>
+            <p>Status: ${todo_.status}</p>
         </div>
         `;
         document.getElementById("details-container").style.display = "block";
@@ -358,6 +358,49 @@ document.body.addEventListener("swiped-left", function(){
         if (!menuDisplay){
             document.getElementById("menu").style.display = "none";
             document.getElementById("mobile-title").style.display = "block"; 
+        }
+    }
+})
+
+document.getElementById("search-go").addEventListener("click", function(){
+    let searchRequest = document.getElementById("search-input").value.toLowerCase();
+    if (searchRequest != ''){
+        count = 0;
+        allToDo.forEach(todo => {
+            title = todo.title.toLowerCase();
+            if (title == searchRequest){
+                index = allToDo.indexOf(todo);
+                let temp = todo.timeLeft();
+                document.getElementById("details").innerHTML = 
+                `
+                <h4>${todo.title}</h4>
+                <p>${todo.description}</p><hr>
+                <div id="info" value="${index}">
+                    <p>Date/time created: ${todo.dateCreated.getDate()}/ ${todo.dateCreated.getMonth()+1}/ ${todo.dateCreated.getFullYear()} (${todo.dateCreated.getHours()}:${todo.dateCreated.getMinutes()})</p>
+                    <p>Due date/time: ${todo.dueDate.getDate()}/ ${todo.dueDate.getMonth()+1}/ ${todo.dueDate.getFullYear()} (${todo.dueDate.getHours()}:${todo.dueDate.getMinutes()})</p>
+                    <p>Time left: <span id="time-left">${temp[0]}day | ${temp[1]}hrs | ${temp[2]}mins | ${temp[3]}secs</span>
+                    </p>
+                    <p>Status: ${todo.status}</p>
+                </div>
+                `;
+                document.getElementById("details-container").style.display = "block";
+                document.getElementById("todo-container-all").style.display = "none";
+                document.getElementById("add").style.display = "none";
+                completed.style.display = "none";
+                document.getElementById("search-input").value = "";
+            }
+            else{count++}
+        })
+        if (count == allToDo.length){
+            document.getElementById("details").innerHTML = 
+            `
+                Sorry but Nothing matched your request "${searchRequest = document.getElementById("search-input").value}"
+            `;
+            document.getElementById("details-container").style.display = "block";
+            document.getElementById("todo-container-all").style.display = "none";
+            document.getElementById("add").style.display = "none";
+            completed.style.display = "none";
+            document.getElementById("search-input").value = "";   
         }
     }
 })
