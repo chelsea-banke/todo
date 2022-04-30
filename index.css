@@ -149,7 +149,7 @@ header{
     margin-top: 10px;
     margin-left: -20px;
 }
-#completed h4, #todo-container-all h4, #new-container h4{
+#completed h4{
     margin: auto;
 }
 #links{
@@ -197,16 +197,16 @@ header{
 }
 #new {
     position: relative;
-    background-color: rgb(242, 249, 255);
     padding: 22px;
     padding-top: 15px;
-    /* border: 1px solid black; */
     width: 80%;
     margin-top: 20px;
     margin-left: 50px;
     border-radius: 2px;
-    /* border: 1px solid rgb(163, 163, 163); */
-    box-shadow: 0px 5px 10px rgb(182, 182, 182);
+
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(228, 228, 228);
+    box-shadow: 0px 5px 15px rgb(221, 221, 221);
 }
 #new label{
     margin-top: 15px;
@@ -215,6 +215,8 @@ header{
     width: 100%;
     height: 30px;
     color: rgb(75, 75, 75);
+    border: none;
+    border-bottom: 1px solid black;
 }
 #date-time input {
     width: 100%;
@@ -339,6 +341,7 @@ h4 .info{
         box-shadow: 5px 0px 10px rgb(223, 223, 223), 0px -5px 10px rgb(255, 255, 255);
         left: 0px;
         animation: menu-display 1s;
+        z-index: 2;
     }
     #links {
         margin-left: 0px;
@@ -363,6 +366,7 @@ h4 .info{
     }
     #completed .todo{
         margin-left:40px;
+        margin-top: 30px;
     }
     header{
         width: 100%;
@@ -431,10 +435,6 @@ h4 .info{
     }
     #new{
         width: 100%;
-        background-color: rgb(255, 255, 255);
-        border: 1px solid rgb(228, 228, 228);
-        /* box-shadow: none; */
-        box-shadow: 0px 5px 15px rgb(221, 221, 221);
     }
     #new input{
         border: none;
@@ -451,6 +451,9 @@ h4 .info{
     }
     #date-time{
         margin-top: -15px;
+    }
+    #todo-container-all h4, #new-container h4{
+        margin: auto;
     }
 }
 @media screen and (max-width: 365px) {

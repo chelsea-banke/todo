@@ -343,8 +343,7 @@ let timeOut = function(){
 }
 setInterval(function(){timeOut()}, 1000);
 
-document.body.addEventListener("swipe-left", function(){
-    console.log("swipe-left");
+document.body.addEventListener("swiped-right", function(){
     if(window.screen.width <= 750){
         menuDisplay = toogle(menuDisplay);
         if (menuDisplay){
@@ -353,7 +352,7 @@ document.body.addEventListener("swipe-left", function(){
         }
     }
 })
-document.body.addEventListener("swipe-right", function(){
+document.body.addEventListener("swiped-left", function(){
     if(window.screen.width <= 750){
         menuDisplay = toogle(menuDisplay);
         if (!menuDisplay){
