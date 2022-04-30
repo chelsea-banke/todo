@@ -167,10 +167,12 @@ document.getElementById("todo-titles").addEventListener("click", function(event)
         document.getElementById("todo-container-all").style.display = "none";
         document.getElementById("add").style.display = "none";
         completed.style.display = "none";
+        overview.style.display = "block";
     
         if (window.screen.width <= 750){
             menuDisplay = toogle(menuDisplay);
-            document.getElementById("menu").style.display = "none"; 
+            document.getElementById("menu").style.display = "none";
+            document.getElementById("mobile-title").style.display = "block"; 
         }
     }
     else if(event.target.getAttribute("id") == "completed-btn"){
@@ -185,6 +187,7 @@ document.getElementById("todo-titles").addEventListener("click", function(event)
         if (window.screen.width <= 750){
             completed.style.display = "none";
             document.getElementById("menu").style.display = "none";
+            document.getElementById("mobile-title").style.display = "block"; 
         }
         overview.style.display = "block";
         document.getElementById("new-container").style.display = "none";
@@ -242,12 +245,15 @@ function toogle(bool){
 document.getElementById("completed").addEventListener("click", function(){
     if (window.screen.width <= 750 && document.getElementById("menu").style.display != "none"){
         document.getElementById("menu").style.display = "none";
+        document.getElementById("mobile-title").style.display = "block"; 
         menuDisplay = toogle(menuDisplay);
     }
 })
 document.getElementById("overview").addEventListener("click", function(){
     if (window.screen.width <= 750 && document.getElementById("menu").style.display != "none"){
         document.getElementById("menu").style.display = "none";
+        document.getElementById("mobile-title").style.display = "block"; 
+        document.getElementById("mobile-title").style.display = "block"; 
         menuDisplay = toogle(menuDisplay);
     
     }
@@ -258,8 +264,12 @@ document.getElementById("menu-btn").addEventListener("click", function(){
     menuDisplay = toogle(menuDisplay);
     if (menuDisplay){
         document.getElementById("menu").style.display = "block";
+        document.getElementById("mobile-title").style.display = "none"; 
     }
-    else { document.getElementById("menu").style.display = "none"}
+    else { 
+        document.getElementById("menu").style.display = "none";
+        document.getElementById("mobile-title").style.display = "block"; 
+    }
 })
 
 function filter(list){
@@ -297,30 +307,6 @@ document.getElementById("cancel").addEventListener("click", function(){
     document.getElementById("add").style.display = "block";
 })
 
-// document.getElementById("all").addEventListener("click", function(){
-//     if (window.screen.width <= 750){
-//         completed.style.display = "none";
-//         document.getElementById("menu").style.display = "none";
-//     }
-//     overview.style.display = "block";
-//     document.getElementById("new-container").style.display = "none";
-//     document.getElementById("add").style.display = "block";
-//     todoLists.forEach(todo => {
-//         todo.style.display = defaultDisplay;
-//     })
-//     menuDisplay = toogle(menuDisplay);
-// })
-
-// document.getElementById("completed-btn").addEventListener("click", function(){
-//     console.log("clicked");
-//     overview.style.display = "none";
-//     completed.style.display = "block";
-//     document.getElementById("menu").style.display = "none";
-//     document.getElementById("add").style.display = "block";
-//     menuDisplay = toogle(menuDisplay);
-// })
-console.log(window.screen.width)
-
 document.getElementById("back").addEventListener("click", function(){
     document.getElementById("details-container").style.display = "none";
     document.getElementById("todo-container-all").style.display = "block";
@@ -339,10 +325,6 @@ let timeOut = function(){
             let element = document.createElement("div");
             element.classList.add("todo");
             element.innerHTML = `
-                <div class="info-box">
-                <p>${elem.dateCreated.getDate()}/ ${elem.dateCreated.getMonth()+1}/ ${elem.dateCreated.getFullYear()}</p>
-                <button class="btn info" value="${allToDo.indexOf(elem)}">ooo</button>
-                </div>
                 <div class="btn-group-vertical more" value="${allToDo.indexOf(elem)}">
                     <button class="btn" id="delete">Delete</button>
                 </div>
@@ -360,3 +342,23 @@ let timeOut = function(){
     }
 }
 setInterval(function(){timeOut()}, 1000);
+
+document.body.addEventListener("swipe-left", function(){
+    console.log("swipe-left");
+    if(window.screen.width <= 750){
+        menuDisplay = toogle(menuDisplay);
+        if (menuDisplay){
+            document.getElementById("menu").style.display = "block";
+            document.getElementById("mobile-title").style.display = "none"; 
+        }
+    }
+})
+document.body.addEventListener("swipe-right", function(){
+    if(window.screen.width <= 750){
+        menuDisplay = toogle(menuDisplay);
+        if (!menuDisplay){
+            document.getElementById("menu").style.display = "none";
+            document.getElementById("mobile-title").style.display = "block"; 
+        }
+    }
+})

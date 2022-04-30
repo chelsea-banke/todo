@@ -149,15 +149,17 @@ header{
     margin-top: 10px;
     margin-left: -20px;
 }
-#completed h4, #todo-container-all h4{
+#completed h4, #todo-container-all h4, #new-container h4{
     margin: auto;
 }
 #links{
+    position: absolute;
     /* margin: auto; */
-    margin-top: 20px;
+    /* margin-top: 20px; */
     margin-left: 15px;
     width: 100%;
     margin-left: -10px;
+    bottom: 0px;
 }
 #links img {
     display: inline-block;
@@ -166,10 +168,10 @@ header{
     box-shadow: 0px 5px 10px rgb(209, 209, 209);
     border-radius: 5px;
 }
-nav p{
+#links p{
     /* position: absolute; */
     font-size: small;
-    margin-top: 80px;
+    margin-top: 10px;
     width: 100%;
     margin-left: -6px;
 }
@@ -340,8 +342,9 @@ h4 .info{
     }
     #links {
         margin-left: 0px;
+        bottom: 100px;
     }
-    nav p{
+    #links p{
         margin-left: 0px;
     }
     main {
@@ -428,7 +431,15 @@ h4 .info{
     }
     #new{
         width: 100%;
-        background-color: rgb(201, 201, 201);
+        background-color: rgb(255, 255, 255);
+        border: 1px solid rgb(228, 228, 228);
+        /* box-shadow: none; */
+        box-shadow: 0px 5px 15px rgb(221, 221, 221);
+    }
+    #new input{
+        border: none;
+        border-bottom: 1px solid rgb(54, 54, 54);
+        background-color: white;
     }
     #back{
         /* position: fixed; */
